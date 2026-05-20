@@ -369,9 +369,6 @@ export function ContactSection() {
             <a href={`tel:+66${contact.phone.replace(/^0/, "")}`} className="flex gap-3 hover:text-copper">
               <Phone className="text-copper" size={18} aria-hidden /> {contact.phone}
             </a>
-            <span className="flex gap-3">
-              <MapPin className="mt-1 text-copper" size={18} aria-hidden /> {contact.address}
-            </span>
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <WhatsAppButton>WhatsApp Ofer</WhatsAppButton>
@@ -393,7 +390,7 @@ export function ContactSection() {
                 Chai Sathan, Saraphi
               </h3>
               <p className="mt-4 max-w-md text-sm leading-7 text-cream/64">
-                A private atelier on the outskirts of Chiang Mai — nestled in a
+                A private atelier on the outskirts of Chiang Mai, nestled in a
                 quiet neighbourhood away from the tourist circuit. Exact
                 directions sent on booking confirmation.
               </p>
