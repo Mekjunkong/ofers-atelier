@@ -114,7 +114,7 @@ export function IntroBand() {
         <FadeIn delay={0.1}>
           <p className="max-w-2xl text-base leading-8 text-cream/70">
             Ofer&apos;s Atelier brings guests into an intimate chef-led world of
-            smoked meat, sausage making, preserving techniques, fire cooking,
+            smoked meat, preserving techniques, fire cooking,
             private feasts, and thoughtful culinary consulting. Every gathering
             is designed to feel personal, handcrafted, and memorable.
           </p>

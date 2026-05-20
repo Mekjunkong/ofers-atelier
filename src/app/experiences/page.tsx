@@ -5,7 +5,7 @@ import { pageMetadata, serviceSchemas } from "@/lib/brand";
 export const metadata: Metadata = pageMetadata({
   title: "Experiences",
   description:
-    "Explore Ofer’s Atelier experiences in Chiang Mai, including sausage making, fire cooking, preserving workshops, private feasts, smoked pork ribs, and chef consulting.",
+    "Explore Ofer’s Atelier experiences in Chiang Mai, including fire cooking, preserving workshops, private feasts, smoked pork ribs, and chef consulting.",
   path: "/experiences",
 });
 

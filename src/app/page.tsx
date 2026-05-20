@@ -20,7 +20,7 @@ import {
 export const metadata: Metadata = pageMetadata({
   title: "Ofer’s Atelier | Luxury Fire, Smoke & Culinary Experiences in Chiang Mai",
   description:
-    "Discover Ofer’s Atelier, a premium chef-led culinary experience in Chiang Mai offering smoked meat, sausage making, fire cooking, private feasts, and restaurant consulting by Chef Ofer Aviv.",
+    "Discover Ofer’s Atelier, a premium chef-led culinary experience in Chiang Mai offering smoked meat, fire cooking, private feasts, and restaurant consulting by Chef Ofer Aviv.",
 });
 
 export default function Home() {

@@ -23,7 +23,7 @@ export const keywords = [
   "Chef Ofer Aviv",
   "Chiang Mai cooking experience",
   "smoked meat Chiang Mai",
-  "sausage making class Chiang Mai",
+
   "fire cooking Thailand",
   "chef table Chiang Mai",
   "culinary workshop Chiang Mai",
@@ -48,15 +48,6 @@ export const experiences = [
     image: "/images/gallery/smoked-pork-ribs.jpg",
     description:
       "Slow-smoked pork ribs prepared with Ofer’s fire-led technique and deep, balanced seasoning.",
-  },
-  {
-    title: "Sausage Making Class & Dinner",
-    slug: "sausage-making-class",
-    price: "฿1,800",
-    duration: "Approx. 3 hours",
-    image: "/images/gallery/sausage-class.jpg",
-    description:
-      "A hands-on evening of grinding, seasoning, stuffing, and sharing a chef-led dinner around the table.",
   },
   {
     title: "Preserving Techniques Workshop",
@@ -97,11 +88,6 @@ export const gallery = [
     src: "/images/gallery/smoked-pork-ribs.jpg",
     alt: "Smoked pork ribs from Ofer's Atelier",
     label: "Smoked Meat",
-  },
-  {
-    src: "/images/gallery/sausage-class.jpg",
-    alt: "Sausage making class at Ofer's Atelier",
-    label: "Workshops",
   },
   {
     src: "/images/gallery/fire-cooking.jpg",
@@ -176,7 +162,7 @@ export const testimonials = [
   },
   {
     quote:
-      "The sausage workshop was hands-on without feeling rushed. It felt like being invited into a serious chef’s private atelier.",
+      "The workshop was hands-on without feeling rushed. It felt like being invited into a serious chef’s private atelier.",
     name: "James & Claire",
   },
 ];
@@ -263,7 +249,7 @@ export const localBusinessSchema = {
   },
   sameAs: [contact.instagram, contact.facebook],
   description:
-    "Premium chef-led culinary experiences in Chiang Mai focused on smoked meat, fire cooking, sausage making, preserving techniques, private feasts, and restaurant consulting.",
+    "Premium chef-led culinary experiences in Chiang Mai focused on smoked meat, fire cooking, preserving techniques, private feasts, and restaurant consulting.",
 };
 
 export const personSchema = {
