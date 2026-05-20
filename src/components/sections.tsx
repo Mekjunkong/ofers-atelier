@@ -8,7 +8,6 @@ import {
   MapPin,
   MessageCircle,
   Phone,
-  Quote,
   Star,
 } from "lucide-react";
 import { contact, experiences, gallery, whatsappUrl } from "@/lib/brand";

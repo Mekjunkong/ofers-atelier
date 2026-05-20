@@ -20,15 +20,14 @@ export async function generateMetadata({
 
 export default async function AboutPage() {
   const t = await getTranslations("pages.about");
-  const tCommon = await getTranslations("common");
   const tBooking = await getTranslations("booking");
 
   return (
     <>
       <PageHero title={t("heroTitle")} text={t("heroText")} />
-      <section className="bg-obsidian px-5 py-24 sm:px-8">
+      <section className="bg-linen px-5 py-24 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div className="relative overflow-hidden rounded-[8px] border border-white/10">
+          <div className="relative overflow-hidden rounded-[8px] border border-bark/10">
             <Image
               src="/images/chef-ofer-real.jpg"
               alt="Chef Ofer Aviv with smoked meat"
@@ -40,8 +39,8 @@ export default async function AboutPage() {
           </div>
           <div>
             <SectionHeading title={t("sectionTitle")} />
-            <p className="mt-7 text-lg leading-9 text-cream/72">{t("body1")}</p>
-            <p className="mt-5 text-base leading-8 text-cream/64">{t("body2")}</p>
+            <p className="mt-7 text-lg leading-9 text-bark/70">{t("body1")}</p>
+            <p className="mt-5 text-base leading-8 text-bark/58">{t("body2")}</p>
             <div className="mt-8">
               <WhatsAppButton bookingMsg={tBooking("message")}>{t("cta")}</WhatsAppButton>
             </div>
