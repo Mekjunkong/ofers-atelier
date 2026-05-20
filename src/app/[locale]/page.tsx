@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import {
   AboutPreview,
   ContactSection,
@@ -17,11 +18,19 @@ import {
   serviceSchemas,
 } from "@/lib/brand";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Ofer’s Atelier | Luxury Fire, Smoke & Culinary Experiences in Chiang Mai",
-  description:
-    "Discover Ofer’s Atelier, a premium chef-led culinary experience in Chiang Mai offering smoked meat, fire cooking, private feasts, and restaurant consulting by Chef Ofer Aviv.",
-});
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.home" });
+  return pageMetadata({
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    path: locale === "he" ? "/he" : "",
+  });
+}
 
 export default function Home() {
   return (

@@ -1,8 +1,12 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { contact, whatsappUrl } from "@/lib/brand";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const t = await getTranslations("footer");
+  const tNav = await getTranslations("nav");
+
   return (
     <footer className="border-t border-white/10 bg-charcoal px-5 py-14 text-cream/72 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr_1fr]">
@@ -10,23 +14,20 @@ export function SiteFooter() {
           <Link href="/" className="font-serif text-3xl text-cream">
             Ofer&apos;s Atelier
           </Link>
-          <p className="mt-4 max-w-md text-sm leading-7">
-            Fire, smoke, handcrafted technique, and intimate culinary
-            hospitality in Chiang Mai.
-          </p>
+          <p className="mt-4 max-w-md text-sm leading-7">{t("tagline")}</p>
         </div>
         <div className="grid gap-3 text-sm">
           <Link href="/experiences" className="hover:text-copper">
-            Experiences
+            {tNav("experiences")}
           </Link>
           <Link href="/private-events" className="hover:text-copper">
-            Private Events
+            {tNav("privateEvents")}
           </Link>
           <Link href="/consulting" className="hover:text-copper">
-            Consulting
+            {tNav("consulting")}
           </Link>
           <Link href="/journal" className="hover:text-copper">
-            Journal
+            {tNav("journal")}
           </Link>
         </div>
         <address className="grid gap-3 text-sm not-italic">
@@ -46,13 +47,12 @@ export function SiteFooter() {
             @ofersatelier
           </a>
           <a href={whatsappUrl} className="mt-2 text-copper hover:text-gold">
-            Book via WhatsApp
+            {t("bookViaWhatsApp")}
           </a>
         </address>
       </div>
       <div className="mx-auto mt-12 max-w-7xl text-xs text-cream/42">
-        © {new Date().getFullYear()} Ofer&apos;s Atelier. Culinary experiences
-        in Chiang Mai.
+        © {new Date().getFullYear()} {t("copyright")}
       </div>
     </footer>
   );

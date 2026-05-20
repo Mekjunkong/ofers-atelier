@@ -1,0 +1,247 @@
+{
+  "nav": {
+    "experiences": "Experiences",
+    "about": "About",
+    "gallery": "Gallery",
+    "privateEvents": "Private Events",
+    "consulting": "Consulting",
+    "journal": "Journal",
+    "contact": "Contact",
+    "whatsAppOfer": "WhatsApp Ofer",
+    "book": "Book"
+  },
+  "common": {
+    "bookViaWhatsApp": "Book via WhatsApp",
+    "whatsAppOfer": "WhatsApp Ofer",
+    "bookAnExperience": "Book an Experience",
+    "viewAllExperiences": "View all experiences",
+    "viewGallery": "View gallery",
+    "learnMoreAboutChef": "Learn more about Chef Ofer",
+    "getDirections": "Get Directions",
+    "location": "Location"
+  },
+  "booking": {
+    "message": "Hi Ofer, I'm interested in booking an experience at Ofer's Atelier. Can you send me available dates and details?",
+    "messageWithExperience": "Hi Ofer, I'm interested in booking the {experience} at Ofer's Atelier. Can you send me available dates and details?"
+  },
+  "hero": {
+    "title": "Ofer's Atelier",
+    "subtitle": "Fire, Smoke & Culinary Craftsmanship in Chiang Mai",
+    "description": "A premium chef-led atelier where guests gather around fire, smoke, and handcrafted food experiences."
+  },
+  "introBand": {
+    "heading": "A Chiang Mai culinary atelier shaped by smoke, flame, and human connection.",
+    "body": "Ofer's Atelier brings guests into an intimate chef-led world of smoked meat, preserving techniques, fire cooking, private feasts, and thoughtful culinary consulting. Every gathering is designed to feel personal, handcrafted, and memorable."
+  },
+  "featuredExperiences": {
+    "title": "Featured Experiences",
+    "text": "Hands-on workshops, slow-smoked specialties, private feasts, and consulting shaped by Chef Ofer Aviv."
+  },
+  "aboutPreview": {
+    "title": "About Chef Ofer",
+    "body1": "Chef Ofer Aviv brings around 15 years of culinary experience to an atelier built on smoke, live fire, restaurant craft, and global fusion cuisine. His work is refined but never distant: every table is an invitation into story, technique, generosity, and connection.",
+    "body2": "For Ofer, dining is not only the serving of food. It is the ritual of gathering, the memory carried by aroma, and the rare pleasure of being hosted with intention."
+  },
+  "gallery": {
+    "title": "Gallery",
+    "text": "A visual taste of Chef Ofer, smoked meat, workshops, fire cooking, guests dining, and food closeups.",
+    "items": [
+      { "alt": "Chef Ofer Aviv presenting smoked meat in Chiang Mai", "label": "Chef Ofer" },
+      { "alt": "Smoked pork ribs from Ofer's Atelier", "label": "Smoked Meat" },
+      { "alt": "Outdoor fire cooking class in Chiang Mai", "label": "Fire Cooking" },
+      { "alt": "Guests dining with Chef Ofer", "label": "Chef Table" },
+      { "alt": "Feast experience at Ofer's Atelier", "label": "Feasts" }
+    ]
+  },
+  "testimonials": {
+    "title": "Guest Impressions",
+    "items": [
+      {
+        "quote": "A beautifully personal evening. The food was generous, smoky, and full of detail, but the real magic was the story behind every dish.",
+        "name": "Daniel K."
+      },
+      {
+        "quote": "Chef Ofer makes fire cooking feel both refined and deeply human. We left full, inspired, and already planning another visit.",
+        "name": "Maya R."
+      },
+      {
+        "quote": "The workshop was hands-on without feeling rushed. It felt like being invited into a serious chef's private atelier.",
+        "name": "James & Claire"
+      }
+    ]
+  },
+  "faq": {
+    "title": "FAQ",
+    "text": "The essentials before booking a workshop, feast, private event, or consulting conversation.",
+    "items": [
+      {
+        "question": "Where are you located?",
+        "answer": "Ofer's Atelier is located in Chai Sathan, Saraphi, Chiang Mai, Thailand."
+      },
+      {
+        "question": "How do I book?",
+        "answer": "The fastest way is to send Ofer a WhatsApp message with your preferred experience, date, group size, and any dietary notes."
+      },
+      {
+        "question": "Are private groups available?",
+        "answer": "Yes. Private chef-table dinners, fire cooking gatherings, and workshop formats can be arranged for small groups."
+      },
+      {
+        "question": "Do you offer consulting?",
+        "answer": "Yes. Ofer provides restaurant consulting for menu direction, smoked meat programs, kitchen operations, and hospitality concepts."
+      },
+      {
+        "question": "Are beginners welcome?",
+        "answer": "Absolutely. Workshops are chef-led and approachable, while still offering depth for experienced cooks."
+      },
+      {
+        "question": "What is included in the experience?",
+        "answer": "Each experience includes chef instruction or hosting, prepared food, shared dining, and the relevant hands-on elements for the chosen format."
+      },
+      {
+        "question": "What languages are available?",
+        "answer": "Experiences are available in English and Hebrew. Additional language support may be discussed when booking."
+      },
+      {
+        "question": "Do I need to pay deposit?",
+        "answer": "A deposit may be requested to secure private dates or limited workshop seats. Ofer will confirm details during booking."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact / Booking",
+    "text": "For availability, private groups, consulting, or workshop seats, send Ofer a WhatsApp message with your preferred date and experience.",
+    "locationLabel": "Location",
+    "locationTitle": "Chai Sathan, Saraphi",
+    "locationText": "A private atelier on the outskirts of Chiang Mai, nestled in a quiet neighbourhood away from the tourist circuit. Exact directions sent on booking confirmation.",
+    "address1": "99/99, M.5, Moo Baan Perfect Home",
+    "address2": "Chai Sathan Sub-district, Saraphi District",
+    "address3": "Chiang Mai 50140, Thailand",
+    "instagram": "Instagram @ofersatelier"
+  },
+  "journal": {
+    "title": "Journal",
+    "text": "Notes on smoke, fire, preserving, hospitality, and restaurant craft.",
+    "items": [
+      {
+        "title": "Why Smoke Is More Than Flavor",
+        "date": "Atelier Notes",
+        "excerpt": "A chef's reflection on patience, heat, hardwood, and the quiet discipline behind memorable smoked meat."
+      },
+      {
+        "title": "Preserving as Culinary Memory",
+        "date": "Technique",
+        "excerpt": "Curing and preserving are not shortcuts. They are ways of concentrating time, place, and intention."
+      },
+      {
+        "title": "Building a Menu Around Fire",
+        "date": "Consulting",
+        "excerpt": "How live fire can shape restaurant identity, kitchen rhythm, and a guest's emotional memory of a meal."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Fire, smoke, handcrafted technique, and intimate culinary hospitality in Chiang Mai.",
+    "copyright": "Ofer's Atelier. Culinary experiences in Chiang Mai.",
+    "bookViaWhatsApp": "Book via WhatsApp"
+  },
+  "experiences": {
+    "chef-consulting": {
+      "title": "Chef Consulting",
+      "description": "Strategic menu, smoke program, kitchen flow, and concept guidance for restaurants and culinary operators.",
+      "duration": "Consultation scope tailored to project"
+    },
+    "smoked-pork-ribs": {
+      "title": "Smoked Pork Ribs",
+      "description": "Slow-smoked pork ribs prepared with Ofer's fire-led technique and deep, balanced seasoning.",
+      "duration": "Pre-order availability varies"
+    },
+    "preserving-techniques-workshop": {
+      "title": "Preserving Techniques Workshop",
+      "description": "Explore curing, preserving, and flavor-building techniques used to extend texture, aroma, and depth.",
+      "duration": "Approx. 3 hours"
+    },
+    "outdoor-fire-cooking-class": {
+      "title": "Outdoor Fire Cooking Class & Feast",
+      "description": "Learn to cook with live fire, smoke, ember heat, and instinct before sitting down to a generous feast.",
+      "duration": "Approx. 3-4 hours"
+    },
+    "feast-experience": {
+      "title": "Feast Experience",
+      "description": "An intimate chef-table gathering shaped by smoke, fire, global fusion flavors, and warm hospitality.",
+      "duration": "Evening feast"
+    }
+  },
+  "pages": {
+    "home": {
+      "metaTitle": "Ofer's Atelier | Luxury Fire, Smoke & Culinary Experiences in Chiang Mai",
+      "metaDescription": "Discover Ofer's Atelier, a premium chef-led culinary experience in Chiang Mai offering smoked meat, fire cooking, private feasts, and restaurant consulting by Chef Ofer Aviv."
+    },
+    "experiences": {
+      "heroTitle": "Experiences",
+      "heroText": "Chef-led culinary gatherings where smoke, fire, preserving, and table hospitality become a memorable Chiang Mai experience.",
+      "metaTitle": "Experiences",
+      "metaDescription": "Explore Ofer's Atelier experiences in Chiang Mai, including fire cooking, preserving workshops, private feasts, smoked pork ribs, and chef consulting."
+    },
+    "about": {
+      "heroTitle": "About Chef Ofer",
+      "heroText": "A chef, host, and culinary consultant with around 15 years of experience shaping memorable food around fire, smoke, and conversation.",
+      "sectionTitle": "Craft, hospitality, and the pleasure of gathering",
+      "body1": "Ofer Aviv is a chef with around 15 years of experience across the culinary field. His specialties include smoked meat, restaurant consulting, global fusion cuisine, and food experiences that bring guests close to the process.",
+      "body2": "At Ofer's Atelier, dining is treated as an act of hosting: fire becomes atmosphere, smoke becomes memory, and the table becomes a place for stories, technique, generosity, and human connection.",
+      "cta": "Book with Ofer",
+      "metaTitle": "About Chef Ofer Aviv",
+      "metaDescription": "Meet Chef Ofer Aviv, the chef behind Ofer's Atelier in Chiang Mai, specializing in smoked meat, fire cooking, restaurant consulting, and global fusion cuisine."
+    },
+    "consulting": {
+      "heroTitle": "Consulting",
+      "heroText": "Restaurant consulting for operators who want sharper culinary identity, better systems, and a memorable guest experience.",
+      "sectionTitle": "Restaurant consulting with a chef's eye",
+      "sectionText": "For restaurants, hospitality teams, and culinary operators who need sharper food direction and a stronger guest experience.",
+      "cta": "Discuss Consulting",
+      "services": [
+        "Menu development and concept refinement",
+        "Smoked meat and live-fire program design",
+        "Kitchen workflow and prep systems",
+        "Guest experience and chef-table strategy"
+      ],
+      "metaTitle": "Restaurant Consulting",
+      "metaDescription": "Chef Ofer Aviv offers restaurant consulting in Thailand for menus, smoked meat programs, fire cooking concepts, operations, and guest experience."
+    },
+    "privateEvents": {
+      "heroTitle": "Private Events",
+      "heroText": "Bespoke chef-led gatherings for guests who want a private table, live fire, smoked meat, and a meal built around connection.",
+      "sectionTitle": "Private gatherings around the table",
+      "body": "Ofer designs intimate chef-table dinners, outdoor fire feasts, and workshop-led celebrations for private groups. The format can be shaped around smoked meat, global fusion courses, hands-on cooking, or a relaxed shared feast.",
+      "features": ["Chef-hosted", "Small groups", "Custom menus"],
+      "cta": "Plan a Private Event",
+      "metaTitle": "Private Events",
+      "metaDescription": "Book private chef-table dinners, fire cooking feasts, and intimate culinary gatherings with Chef Ofer Aviv in Chiang Mai."
+    },
+    "journal": {
+      "heroTitle": "Journal",
+      "heroText": "A future home for chef notes, techniques, menu stories, and reflections from the atelier.",
+      "metaTitle": "Journal",
+      "metaDescription": "Read Ofer's Atelier notes on smoked meat, fire cooking, preserving techniques, hospitality, chef-table experiences, and restaurant craft."
+    },
+    "contact": {
+      "heroTitle": "Contact / Booking",
+      "heroText": "Send a WhatsApp message to request available dates, private group options, consulting details, or the next chef-led workshop.",
+      "metaTitle": "Contact and Booking",
+      "metaDescription": "Contact Ofer's Atelier in Chiang Mai by WhatsApp, phone, email, Instagram, or Facebook to book a culinary experience, feast, workshop, or consulting session."
+    },
+    "gallery": {
+      "heroTitle": "Gallery",
+      "heroText": "Real images from Chef Ofer's kitchen, table, workshops, smoked meat, and fire-led culinary experiences.",
+      "sectionTitle": "Atelier Moments",
+      "sectionText": "Replace or add final approved photography in public/images/gallery as more images are collected from Wix, Facebook, and Instagram.",
+      "metaTitle": "Gallery",
+      "metaDescription": "View Chef Ofer Aviv, smoked meat, fire cooking, workshops, food closeups, and private feast imagery from Ofer's Atelier in Chiang Mai."
+    },
+    "notFound": {
+      "title": "Page not found",
+      "text": "The page you're looking for has moved or doesn't exist. Head back to discover Ofer's experiences.",
+      "backHome": "Back to Home"
+    }
+  }
+}

@@ -52,3 +52,13 @@ summary {
 img {
   background-color: #16100d;
 }
+
+:lang(he) body {
+  font-family: var(--font-heebo), ui-sans-serif, system-ui, sans-serif;
+}
+
+:lang(he) .font-serif {
+  font-family: var(--font-heebo), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+}

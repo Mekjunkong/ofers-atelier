@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import {
   ArrowUpRight,
   CalendarDays,
@@ -11,32 +11,21 @@ import {
   Quote,
   Star,
 } from "lucide-react";
-import {
-  bookingMessage,
-  contact,
-  experiences,
-  faqs,
-  gallery,
-  journalPosts,
-  testimonials,
-  whatsappUrl,
-} from "@/lib/brand";
+import { contact, experiences, gallery, whatsappUrl } from "@/lib/brand";
 import { FadeIn, HeroItem, HeroMotion } from "@/components/motion";
+import { Link } from "@/i18n/navigation";
 
 export function WhatsAppButton({
-  children = "Book via WhatsApp",
+  children,
   variant = "solid",
-  experience,
+  bookingMsg,
 }: {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   variant?: "solid" | "outline";
-  experience?: string;
+  bookingMsg: string;
 }) {
   const base = whatsappUrl.split("?")[0];
-  const msg = experience
-    ? `Hi Ofer, I'm interested in booking the ${experience} at Ofer's Atelier. Can you send me available dates and details?`
-    : bookingMessage;
-  const href = `${base}?text=${encodeURIComponent(msg)}`;
+  const href = `${base}?text=${encodeURIComponent(bookingMsg)}`;
 
   return (
     <a
@@ -53,7 +42,11 @@ export function WhatsAppButton({
   );
 }
 
-export function Hero() {
+export async function Hero() {
+  const t = await getTranslations("hero");
+  const tCommon = await getTranslations("common");
+  const tBooking = await getTranslations("booking");
+
   return (
     <section className="relative isolate min-h-[92svh] overflow-hidden">
       <Image
@@ -70,18 +63,17 @@ export function Hero() {
         <HeroMotion className="max-w-3xl">
           <HeroItem>
             <h1 className="font-serif text-[clamp(4.2rem,12vw,9.5rem)] leading-[0.82] text-cream">
-              Ofer&apos;s Atelier
+              {t("title")}
             </h1>
           </HeroItem>
           <HeroItem>
             <p className="mt-7 max-w-2xl font-serif text-3xl leading-tight text-cream/92 md:text-4xl">
-              Fire, Smoke &amp; Culinary Craftsmanship in Chiang Mai
+              {t("subtitle")}
             </p>
           </HeroItem>
           <HeroItem>
             <p className="mt-7 max-w-xl text-base leading-8 text-cream/74 md:text-lg">
-              A premium chef-led atelier where guests gather around fire,
-              smoke, and handcrafted food experiences.
+              {t("description")}
             </p>
           </HeroItem>
           <HeroItem>
@@ -90,9 +82,11 @@ export function Hero() {
                 href="/contact"
                 className="inline-flex h-12 items-center justify-center rounded-[8px] bg-copper px-6 text-sm font-semibold text-obsidian shadow-[0_16px_40px_rgba(176,111,56,0.25)] transition hover:bg-gold focus:outline-none focus:ring-2 focus:ring-gold/70"
               >
-                Book an Experience
+                {tCommon("bookAnExperience")}
               </Link>
-              <WhatsAppButton variant="outline">WhatsApp Ofer</WhatsAppButton>
+              <WhatsAppButton variant="outline" bookingMsg={tBooking("message")}>
+                {tCommon("whatsAppOfer")}
+              </WhatsAppButton>
             </div>
           </HeroItem>
         </HeroMotion>
@@ -101,23 +95,19 @@ export function Hero() {
   );
 }
 
-export function IntroBand() {
+export async function IntroBand() {
+  const t = await getTranslations("introBand");
+
   return (
     <section className="border-y border-white/10 bg-umber/35 px-5 py-16 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
         <FadeIn>
           <h2 className="font-serif text-4xl leading-tight text-cream md:text-5xl">
-            A Chiang Mai culinary atelier shaped by smoke, flame, and human
-            connection.
+            {t("heading")}
           </h2>
         </FadeIn>
         <FadeIn delay={0.1}>
-          <p className="max-w-2xl text-base leading-8 text-cream/70">
-            Ofer&apos;s Atelier brings guests into an intimate chef-led world of
-            smoked meat, preserving techniques, fire cooking,
-            private feasts, and thoughtful culinary consulting. Every gathering
-            is designed to feel personal, handcrafted, and memorable.
-          </p>
+          <p className="max-w-2xl text-base leading-8 text-cream/70">{t("body")}</p>
         </FadeIn>
       </div>
     </section>
@@ -135,77 +125,84 @@ export function SectionHeading({
 }) {
   return (
     <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-      <h2 className="font-serif text-4xl leading-tight text-cream md:text-6xl">
-        {title}
-      </h2>
+      <h2 className="font-serif text-4xl leading-tight text-cream md:text-6xl">{title}</h2>
       {text ? <p className="mt-5 text-base leading-8 text-cream/68">{text}</p> : null}
     </div>
   );
 }
 
-export function ExperiencesGrid({ limit }: { limit?: number }) {
+export async function ExperiencesGrid({ limit }: { limit?: number }) {
+  const t = await getTranslations("experiences");
+  const tCommon = await getTranslations("common");
+  const tBooking = await getTranslations("booking");
+
   const items = typeof limit === "number" ? experiences.slice(0, limit) : experiences;
 
   return (
     <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-      {items.map((experience, index) => (
-        <FadeIn key={experience.slug} delay={index * 0.04}>
-          <article
-            id={experience.slug}
-            className="group h-full overflow-hidden rounded-[8px] border border-white/10 bg-[rgba(255,247,230,0.035)]"
-          >
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <Image
-                src={experience.image}
-                alt={experience.title}
-                fill
-                loading="eager"
-                sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-                className="object-cover transition duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 to-transparent" />
-            </div>
-            <div className="p-6">
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="font-serif text-2xl leading-tight text-cream">
-                  {experience.title}
-                </h3>
-                <span className="shrink-0 text-sm font-semibold text-copper">
-                  {experience.price}
-                </span>
+      {items.map((experience, index) => {
+        const title = t(`${experience.slug}.title`);
+        const description = t(`${experience.slug}.description`);
+        const duration = t(`${experience.slug}.duration`);
+        const bookingMsg = tBooking("messageWithExperience", { experience: title });
+
+        return (
+          <FadeIn key={experience.slug} delay={index * 0.04}>
+            <article
+              id={experience.slug}
+              className="group h-full overflow-hidden rounded-[8px] border border-white/10 bg-[rgba(255,247,230,0.035)]"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={experience.image}
+                  alt={title}
+                  fill
+                  loading="eager"
+                  sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 to-transparent" />
               </div>
-              <p className="mt-4 min-h-20 text-sm leading-7 text-cream/66">
-                {experience.description}
-              </p>
-              <div className="mt-5 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-cream/48">
-                <Clock size={14} aria-hidden />
-                {experience.duration}
+              <div className="p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-serif text-2xl leading-tight text-cream">{title}</h3>
+                  <span className="shrink-0 text-sm font-semibold text-copper">
+                    {experience.price}
+                  </span>
+                </div>
+                <p className="mt-4 min-h-20 text-sm leading-7 text-cream/66">{description}</p>
+                <div className="mt-5 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-cream/48">
+                  <Clock size={14} aria-hidden />
+                  {duration}
+                </div>
+                <div className="mt-6">
+                  <WhatsAppButton bookingMsg={bookingMsg}>
+                    {tCommon("bookViaWhatsApp")}
+                  </WhatsAppButton>
+                </div>
               </div>
-              <div className="mt-6">
-                <WhatsAppButton experience={experience.title}>Book via WhatsApp</WhatsAppButton>
-              </div>
-            </div>
-          </article>
-        </FadeIn>
-      ))}
+            </article>
+          </FadeIn>
+        );
+      })}
     </div>
   );
 }
 
-export function FeaturedExperiences() {
+export async function FeaturedExperiences() {
+  const t = await getTranslations("featuredExperiences");
+  const tCommon = await getTranslations("common");
+
   return (
     <section className="bg-obsidian px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <SectionHeading
-            title="Featured Experiences"
-            text="Hands-on workshops, slow-smoked specialties, private feasts, and consulting shaped by Chef Ofer Aviv."
-          />
+          <SectionHeading title={t("title")} text={t("text")} />
           <Link
             href="/experiences"
             className="inline-flex items-center gap-2 text-sm font-semibold text-copper hover:text-gold"
           >
-            View all experiences <ArrowUpRight size={16} aria-hidden />
+            {tCommon("viewAllExperiences")} <ArrowUpRight size={16} aria-hidden />
           </Link>
         </div>
         <ExperiencesGrid limit={6} />
@@ -214,7 +211,10 @@ export function FeaturedExperiences() {
   );
 }
 
-export function AboutPreview() {
+export async function AboutPreview() {
+  const t = await getTranslations("aboutPreview");
+  const tCommon = await getTranslations("common");
+
   return (
     <section className="bg-charcoal px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -231,23 +231,14 @@ export function AboutPreview() {
           </div>
         </FadeIn>
         <FadeIn delay={0.1}>
-          <SectionHeading title="About Chef Ofer" />
-          <p className="mt-7 text-lg leading-9 text-cream/74">
-            Chef Ofer Aviv brings around 15 years of culinary experience to an
-            atelier built on smoke, live fire, restaurant craft, and global
-            fusion cuisine. His work is refined but never distant: every table
-            is an invitation into story, technique, generosity, and connection.
-          </p>
-          <p className="mt-5 text-base leading-8 text-cream/62">
-            For Ofer, dining is not only the serving of food. It is the ritual
-            of gathering, the memory carried by aroma, and the rare pleasure of
-            being hosted with intention.
-          </p>
+          <SectionHeading title={t("title")} />
+          <p className="mt-7 text-lg leading-9 text-cream/74">{t("body1")}</p>
+          <p className="mt-5 text-base leading-8 text-cream/62">{t("body2")}</p>
           <Link
             href="/about"
             className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-copper hover:text-gold"
           >
-            Learn more about Chef Ofer <ArrowUpRight size={16} aria-hidden />
+            {tCommon("learnMoreAboutChef")} <ArrowUpRight size={16} aria-hidden />
           </Link>
         </FadeIn>
       </div>
@@ -255,20 +246,21 @@ export function AboutPreview() {
   );
 }
 
-export function GalleryStrip() {
+export async function GalleryStrip() {
+  const t = await getTranslations("gallery");
+  const tCommon = await getTranslations("common");
+  const galleryItems = t.raw("items") as Array<{ alt: string; label: string }>;
+
   return (
     <section className="bg-obsidian px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <SectionHeading
-            title="Gallery"
-            text="A visual taste of Chef Ofer, smoked meat, workshops, fire cooking, guests dining, and food closeups."
-          />
+          <SectionHeading title={t("title")} text={t("text")} />
           <Link
             href="/gallery"
             className="inline-flex items-center gap-2 text-sm font-semibold text-copper hover:text-gold"
           >
-            View gallery <ArrowUpRight size={16} aria-hidden />
+            {tCommon("viewGallery")} <ArrowUpRight size={16} aria-hidden />
           </Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
@@ -281,14 +273,14 @@ export function GalleryStrip() {
               <figure className="group relative aspect-[4/5] overflow-hidden rounded-[8px] border border-white/10">
                 <Image
                   src={item.src}
-                  alt={item.alt}
+                  alt={galleryItems[index]?.alt ?? item.src}
                   fill
                   loading="eager"
                   sizes="(min-width: 1024px) 17vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition duration-700 group-hover:scale-105"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-4 text-sm text-cream">
-                  {item.label}
+                  {galleryItems[index]?.label ?? ""}
                 </figcaption>
               </figure>
             </FadeIn>
@@ -299,13 +291,16 @@ export function GalleryStrip() {
   );
 }
 
-export function Testimonials() {
+export async function Testimonials() {
+  const t = await getTranslations("testimonials");
+  const items = t.raw("items") as Array<{ quote: string; name: string }>;
+
   return (
     <section className="bg-charcoal px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading title="Guest Impressions" align="center" />
+        <SectionHeading title={t("title")} align="center" />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {testimonials.map((testimonial, index) => (
+          {items.map((testimonial, index) => (
             <FadeIn key={testimonial.name} delay={index * 0.05}>
               <figure className="h-full rounded-[8px] border border-white/10 bg-cream/[0.035] p-6">
                 <Quote className="text-copper" size={24} aria-hidden />
@@ -315,7 +310,7 @@ export function Testimonials() {
                   ))}
                 </div>
                 <blockquote className="mt-5 text-sm leading-7 text-cream/70">
-                  “{testimonial.quote}”
+                  &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
                 <figcaption className="mt-6 text-sm font-semibold text-cream">
                   {testimonial.name}
@@ -329,16 +324,16 @@ export function Testimonials() {
   );
 }
 
-export function FAQSection() {
+export async function FAQSection() {
+  const t = await getTranslations("faq");
+  const items = t.raw("items") as Array<{ question: string; answer: string }>;
+
   return (
     <section className="bg-obsidian px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-        <SectionHeading
-          title="FAQ"
-          text="The essentials before booking a workshop, feast, private event, or consulting conversation."
-        />
+        <SectionHeading title={t("title")} text={t("text")} />
         <div className="grid gap-3">
-          {faqs.map((faq) => (
+          {items.map((faq) => (
             <details
               key={faq.question}
               className="group rounded-[8px] border border-white/10 bg-cream/[0.035] p-5"
@@ -356,27 +351,31 @@ export function FAQSection() {
   );
 }
 
-export function ContactSection() {
+export async function ContactSection() {
+  const t = await getTranslations("contact");
+  const tCommon = await getTranslations("common");
+  const tBooking = await getTranslations("booking");
+
   return (
     <section className="bg-charcoal px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr]">
         <div>
-          <SectionHeading
-            title="Contact / Booking"
-            text="For availability, private groups, consulting, or workshop seats, send Ofer a WhatsApp message with your preferred date and experience."
-          />
+          <SectionHeading title={t("title")} text={t("text")} />
           <div className="mt-9 grid gap-4 text-cream/72">
-            <a href={`tel:+66${contact.phone.replace(/^0/, "")}`} className="flex gap-3 hover:text-copper">
+            <a
+              href={`tel:+66${contact.phone.replace(/^0/, "")}`}
+              className="flex gap-3 hover:text-copper"
+            >
               <Phone className="text-copper" size={18} aria-hidden /> {contact.phone}
             </a>
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <WhatsAppButton>WhatsApp Ofer</WhatsAppButton>
+            <WhatsAppButton bookingMsg={tBooking("message")}>{tCommon("whatsAppOfer")}</WhatsAppButton>
             <a
               href={contact.instagram}
               className="inline-flex h-12 items-center justify-center rounded-[8px] border border-white/15 px-5 text-sm font-semibold text-cream transition hover:border-copper hover:text-copper"
             >
-              Instagram @ofersatelier
+              {t("instagram")}
             </a>
           </div>
         </div>
@@ -384,23 +383,17 @@ export function ContactSection() {
           <div className="flex h-full min-h-[420px] flex-col justify-between bg-[radial-gradient(circle_at_35%_25%,rgba(192,124,62,0.22),transparent_32%),linear-gradient(135deg,#17100d,#080706)] p-8">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-copper">
-                Location
+                {t("locationLabel")}
               </p>
-              <h3 className="mt-5 font-serif text-4xl text-cream">
-                Chai Sathan, Saraphi
-              </h3>
-              <p className="mt-4 max-w-md text-sm leading-7 text-cream/64">
-                A private atelier on the outskirts of Chiang Mai, nestled in a
-                quiet neighbourhood away from the tourist circuit. Exact
-                directions sent on booking confirmation.
-              </p>
+              <h3 className="mt-5 font-serif text-4xl text-cream">{t("locationTitle")}</h3>
+              <p className="mt-4 max-w-md text-sm leading-7 text-cream/64">{t("locationText")}</p>
             </div>
             <div className="grid gap-4 text-sm text-cream/64">
               <div className="h-px bg-white/10" />
               <div className="grid gap-1">
-                <span className="text-cream/80">99/99, M.5, Moo Baan Perfect Home</span>
-                <span>Chai Sathan Sub-district, Saraphi District</span>
-                <span>Chiang Mai 50140, Thailand</span>
+                <span className="text-cream/80">{t("address1")}</span>
+                <span>{t("address2")}</span>
+                <span>{t("address3")}</span>
               </div>
               <a
                 href="https://www.google.com/maps/search/?api=1&query=Chai+Sathan+Saraphi+Chiang+Mai+Thailand"
@@ -409,7 +402,7 @@ export function ContactSection() {
                 className="inline-flex w-fit items-center gap-2 rounded-[6px] border border-copper/40 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-copper transition hover:border-copper hover:bg-copper/10"
               >
                 <MapPin size={13} aria-hidden />
-                Get Directions
+                {tCommon("getDirections")}
               </a>
             </div>
           </div>
@@ -419,13 +412,7 @@ export function ContactSection() {
   );
 }
 
-export function PageHero({
-  title,
-  text,
-}: {
-  title: string;
-  text: string;
-}) {
+export function PageHero({ title, text }: { title: string; text: string }) {
   return (
     <section className="relative overflow-hidden bg-charcoal px-5 pb-20 pt-36 sm:px-8">
       <div className="absolute inset-0 opacity-50">
@@ -454,16 +441,16 @@ export function PageHero({
   );
 }
 
-export function JournalPreview() {
+export async function JournalPreview() {
+  const t = await getTranslations("journal");
+  const items = t.raw("items") as Array<{ title: string; date: string; excerpt: string }>;
+
   return (
     <section className="bg-obsidian px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading
-          title="Journal"
-          text="Notes on smoke, fire, preserving, hospitality, and restaurant craft."
-        />
+        <SectionHeading title={t("title")} text={t("text")} />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {journalPosts.map((post) => (
+          {items.map((post) => (
             <article
               key={post.title}
               className="rounded-[8px] border border-white/10 bg-cream/[0.035] p-6"
@@ -482,20 +469,20 @@ export function JournalPreview() {
   );
 }
 
-export function PrivateEventsContent() {
+export async function PrivateEventsContent() {
+  const t = await getTranslations("pages.privateEvents");
+  const tBooking = await getTranslations("booking");
+
+  const features = t.raw("features") as string[];
+
   return (
     <section className="bg-obsidian px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center">
         <div>
-          <SectionHeading title="Private gatherings around the table" />
-          <p className="mt-7 text-lg leading-9 text-cream/70">
-            Ofer designs intimate chef-table dinners, outdoor fire feasts, and
-            workshop-led celebrations for private groups. The format can be
-            shaped around smoked meat, global fusion courses, hands-on cooking,
-            or a relaxed shared feast.
-          </p>
+          <SectionHeading title={t("sectionTitle")} />
+          <p className="mt-7 text-lg leading-9 text-cream/70">{t("body")}</p>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {["Chef-hosted", "Small groups", "Custom menus"].map((item) => (
+            {features.map((item) => (
               <div key={item} className="rounded-[8px] border border-white/10 p-4">
                 <Flame className="text-copper" size={20} aria-hidden />
                 <p className="mt-3 text-sm font-semibold text-cream">{item}</p>
@@ -503,7 +490,7 @@ export function PrivateEventsContent() {
             ))}
           </div>
           <div className="mt-8">
-            <WhatsAppButton>Plan a Private Event</WhatsAppButton>
+            <WhatsAppButton bookingMsg={tBooking("message")}>{t("cta")}</WhatsAppButton>
           </div>
         </div>
         <div className="relative aspect-[4/5] overflow-hidden rounded-[8px] border border-white/10 lg:aspect-[5/4]">
@@ -521,27 +508,26 @@ export function PrivateEventsContent() {
   );
 }
 
-export function ConsultingContent() {
+export async function ConsultingContent() {
+  const t = await getTranslations("pages.consulting");
+  const tBooking = await getTranslations("booking");
+  const services = t.raw("services") as string[];
+
   return (
     <section className="bg-obsidian px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <SectionHeading
-            title="Restaurant consulting with a chef’s eye"
-            text="For restaurants, hospitality teams, and culinary operators who need sharper food direction and a stronger guest experience."
-          />
+          <SectionHeading title={t("sectionTitle")} text={t("sectionText")} />
           <div className="mt-8">
-            <WhatsAppButton>Discuss Consulting</WhatsAppButton>
+            <WhatsAppButton bookingMsg={tBooking("message")}>{t("cta")}</WhatsAppButton>
           </div>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
-          {[
-            "Menu development and concept refinement",
-            "Smoked meat and live-fire program design",
-            "Kitchen workflow and prep systems",
-            "Guest experience and chef-table strategy",
-          ].map((item) => (
-            <div key={item} className="rounded-[8px] border border-white/10 bg-cream/[0.035] p-6">
+          {services.map((item) => (
+            <div
+              key={item}
+              className="rounded-[8px] border border-white/10 bg-cream/[0.035] p-6"
+            >
               <h3 className="font-serif text-2xl text-cream">{item}</h3>
             </div>
           ))}
