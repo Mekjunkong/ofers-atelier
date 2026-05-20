@@ -50,12 +50,12 @@ export async function Hero() {
   return (
     <section className="relative isolate min-h-[92svh] overflow-hidden">
       <Image
-        src="/images/chef-ofer-real.jpg"
-        alt="Chef Ofer Aviv presenting smoked meat"
+        src="/images/hero-banner.jpg"
+        alt="Fire-cooked smoked brisket at Ofer's Atelier"
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[58%_42%]"
+        className="object-cover object-center"
       />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,6,5,0.94)_0%,rgba(7,6,5,0.76)_42%,rgba(7,6,5,0.3)_72%,rgba(7,6,5,0.66)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-obsidian to-transparent" />
