@@ -4,7 +4,7 @@ import { contact, whatsappUrl } from "@/lib/brand";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-black px-5 py-14 text-cream/72 sm:px-8">
+    <footer className="border-t border-white/10 bg-charcoal px-5 py-14 text-cream/72 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr_1fr]">
         <div>
           <Link href="/" className="font-serif text-3xl text-cream">

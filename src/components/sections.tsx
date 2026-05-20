@@ -12,6 +12,7 @@ import {
   Star,
 } from "lucide-react";
 import {
+  bookingMessage,
   contact,
   experiences,
   faqs,
@@ -25,13 +26,21 @@ import { FadeIn, HeroItem, HeroMotion } from "@/components/motion";
 export function WhatsAppButton({
   children = "Book via WhatsApp",
   variant = "solid",
+  experience,
 }: {
   children?: React.ReactNode;
   variant?: "solid" | "outline";
+  experience?: string;
 }) {
+  const base = whatsappUrl.split("?")[0];
+  const msg = experience
+    ? `Hi Ofer, I'm interested in booking the ${experience} at Ofer's Atelier. Can you send me available dates and details?`
+    : bookingMessage;
+  const href = `${base}?text=${encodeURIComponent(msg)}`;
+
   return (
     <a
-      href={whatsappUrl}
+      href={href}
       className={
         variant === "solid"
           ? "inline-flex h-12 items-center justify-center gap-2 rounded-[8px] bg-copper px-5 text-sm font-semibold text-obsidian shadow-[0_16px_40px_rgba(176,111,56,0.22)] transition hover:bg-gold focus:outline-none focus:ring-2 focus:ring-gold/70"
@@ -173,7 +182,7 @@ export function ExperiencesGrid({ limit }: { limit?: number }) {
                 {experience.duration}
               </div>
               <div className="mt-6">
-                <WhatsAppButton>Book via WhatsApp</WhatsAppButton>
+                <WhatsAppButton experience={experience.title}>Book via WhatsApp</WhatsAppButton>
               </div>
             </div>
           </article>
@@ -207,7 +216,7 @@ export function FeaturedExperiences() {
 
 export function AboutPreview() {
   return (
-    <section className="bg-black px-5 py-24 sm:px-8">
+    <section className="bg-charcoal px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <FadeIn>
           <div className="relative overflow-hidden rounded-[8px] border border-white/10">
@@ -292,13 +301,9 @@ export function GalleryStrip() {
 
 export function Testimonials() {
   return (
-    <section className="bg-black px-5 py-24 sm:px-8">
+    <section className="bg-charcoal px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading
-          title="Guest Impressions"
-          text="Placeholder reviews until verified guest reviews are added."
-          align="center"
-        />
+        <SectionHeading title="Guest Impressions" align="center" />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <FadeIn key={testimonial.name} delay={index * 0.05}>
@@ -353,7 +358,7 @@ export function FAQSection() {
 
 export function ContactSection() {
   return (
-    <section className="bg-black px-5 py-24 sm:px-8">
+    <section className="bg-charcoal px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr]">
         <div>
           <SectionHeading
@@ -425,7 +430,7 @@ export function PageHero({
   text: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-black px-5 pb-20 pt-36 sm:px-8">
+    <section className="relative overflow-hidden bg-charcoal px-5 pb-20 pt-36 sm:px-8">
       <div className="absolute inset-0 opacity-50">
         <Image
           src="/images/chef-ofer-real.jpg"
