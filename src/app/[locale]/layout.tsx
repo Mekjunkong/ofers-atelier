@@ -61,7 +61,7 @@ export default async function LocaleLayout({
       dir={isRtl ? "rtl" : "ltr"}
       className={`${manrope.variable} ${cormorant.variable} ${heebo.variable}`}
     >
-      <body className="bg-obsidian text-cream antialiased">
+      <body className="bg-linen text-bark antialiased">
         <NextIntlClientProvider messages={messages}>
           <SiteHeader />
           <main>{children}</main>

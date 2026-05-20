@@ -97,17 +97,37 @@ export async function Hero() {
 
 export async function IntroBand() {
   const t = await getTranslations("introBand");
+  const tCommon = await getTranslations("common");
 
   return (
-    <section className="border-y border-white/10 bg-umber/35 px-5 py-16 sm:px-8">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+    <section className="bg-terracotta px-5 py-24 text-center sm:px-8">
+      <div className="mx-auto max-w-lg">
         <FadeIn>
+          <div className="relative mx-auto mb-10 aspect-[3/4] w-36 overflow-hidden rounded-[4px] border-2 border-cream/20">
+            <Image
+              src="/images/chef-ofer-real.jpg"
+              alt="Chef Ofer Aviv"
+              fill
+              sizes="144px"
+              className="object-cover object-[54%_15%]"
+            />
+          </div>
+        </FadeIn>
+        <FadeIn delay={0.1}>
           <h2 className="font-serif text-4xl leading-tight text-cream md:text-5xl">
             {t("heading")}
           </h2>
         </FadeIn>
-        <FadeIn delay={0.1}>
-          <p className="max-w-2xl text-base leading-8 text-cream/70">{t("body")}</p>
+        <FadeIn delay={0.18}>
+          <p className="mt-6 text-base leading-8 text-cream/78">{t("body")}</p>
+        </FadeIn>
+        <FadeIn delay={0.25}>
+          <Link
+            href="/about"
+            className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-cream underline underline-offset-4 hover:text-cream/70"
+          >
+            {tCommon("learnMoreAboutChef")} <ArrowUpRight size={16} aria-hidden />
+          </Link>
         </FadeIn>
       </div>
     </section>
@@ -118,15 +138,19 @@ export function SectionHeading({
   title,
   text,
   align = "left",
+  theme = "light",
 }: {
   title: string;
   text?: string;
   align?: "left" | "center";
+  theme?: "dark" | "light";
 }) {
+  const headingColor = theme === "dark" ? "text-cream" : "text-bark";
+  const bodyColor = theme === "dark" ? "text-cream/68" : "text-bark/60";
   return (
     <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-      <h2 className="font-serif text-4xl leading-tight text-cream md:text-6xl">{title}</h2>
-      {text ? <p className="mt-5 text-base leading-8 text-cream/68">{text}</p> : null}
+      <h2 className={`font-serif text-4xl leading-tight md:text-6xl ${headingColor}`}>{title}</h2>
+      {text ? <p className={`mt-5 text-base leading-8 ${bodyColor}`}>{text}</p> : null}
     </div>
   );
 }
@@ -150,7 +174,7 @@ export async function ExperiencesGrid({ limit }: { limit?: number }) {
           <FadeIn key={experience.slug} delay={index * 0.04}>
             <article
               id={experience.slug}
-              className="group h-full overflow-hidden rounded-[8px] border border-white/10 bg-[rgba(255,247,230,0.035)]"
+              className="group h-full overflow-hidden rounded-[8px] border border-bark/10 bg-white/70"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
@@ -161,17 +185,17 @@ export async function ExperiencesGrid({ limit }: { limit?: number }) {
                   sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
                   className="object-cover transition duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 to-transparent" />
               </div>
               <div className="p-6">
                 <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-serif text-2xl leading-tight text-cream">{title}</h3>
+                  <h3 className="font-serif text-2xl leading-tight text-bark">{title}</h3>
                   <span className="shrink-0 text-sm font-semibold text-copper">
                     {experience.price}
                   </span>
                 </div>
-                <p className="mt-4 min-h-20 text-sm leading-7 text-cream/66">{description}</p>
-                <div className="mt-5 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-cream/48">
+                <p className="mt-4 min-h-20 text-sm leading-7 text-bark/60">{description}</p>
+                <div className="mt-5 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-bark/40">
                   <Clock size={14} aria-hidden />
                   {duration}
                 </div>
@@ -194,7 +218,7 @@ export async function FeaturedExperiences() {
   const tCommon = await getTranslations("common");
 
   return (
-    <section className="bg-obsidian px-5 py-24 sm:px-8">
+    <section className="bg-linen px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading title={t("title")} text={t("text")} />
@@ -216,10 +240,10 @@ export async function AboutPreview() {
   const tCommon = await getTranslations("common");
 
   return (
-    <section className="bg-charcoal px-5 py-24 sm:px-8">
+    <section className="border-y border-bark/8 bg-linen px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-[8px] border border-white/10">
+          <div className="relative overflow-hidden rounded-[8px] border border-bark/10">
             <Image
               src="/images/chef-ofer-real.jpg"
               alt="Chef Ofer Aviv"
@@ -232,8 +256,8 @@ export async function AboutPreview() {
         </FadeIn>
         <FadeIn delay={0.1}>
           <SectionHeading title={t("title")} />
-          <p className="mt-7 text-lg leading-9 text-cream/74">{t("body1")}</p>
-          <p className="mt-5 text-base leading-8 text-cream/62">{t("body2")}</p>
+          <p className="mt-7 text-lg leading-9 text-bark/72">{t("body1")}</p>
+          <p className="mt-5 text-base leading-8 text-bark/58">{t("body2")}</p>
           <Link
             href="/about"
             className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-copper hover:text-gold"
@@ -252,7 +276,7 @@ export async function GalleryStrip() {
   const galleryItems = t.raw("items") as Array<{ alt: string; label: string }>;
 
   return (
-    <section className="bg-obsidian px-5 py-24 sm:px-8">
+    <section className="bg-linen px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading title={t("title")} text={t("text")} />
@@ -270,7 +294,7 @@ export async function GalleryStrip() {
               delay={index * 0.04}
               className={index === 0 ? "sm:col-span-2 lg:col-span-2" : ""}
             >
-              <figure className="group relative aspect-[4/5] overflow-hidden rounded-[8px] border border-white/10">
+              <figure className="group relative aspect-[4/5] overflow-hidden rounded-[8px] border border-bark/10">
                 <Image
                   src={item.src}
                   alt={galleryItems[index]?.alt ?? item.src}
@@ -296,26 +320,25 @@ export async function Testimonials() {
   const items = t.raw("items") as Array<{ quote: string; name: string }>;
 
   return (
-    <section className="bg-charcoal px-5 py-24 sm:px-8">
+    <section className="bg-linen px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading title={t("title")} align="center" />
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <SectionHeading title={t("title")} />
+        <div className="mt-12 divide-y divide-bark/10">
           {items.map((testimonial, index) => (
             <FadeIn key={testimonial.name} delay={index * 0.05}>
-              <figure className="h-full rounded-[8px] border border-white/10 bg-cream/[0.035] p-6">
-                <Quote className="text-copper" size={24} aria-hidden />
-                <div className="mt-5 flex gap-1 text-gold">
-                  {Array.from({ length: 5 }).map((_, starIndex) => (
-                    <Star key={starIndex} size={15} fill="currentColor" aria-hidden />
-                  ))}
+              <div className="grid gap-4 py-10 md:grid-cols-[1fr_2fr] md:gap-12">
+                <div className="flex flex-col gap-1">
+                  <p className="font-semibold text-bark">{testimonial.name}</p>
+                  <div className="flex gap-1 text-copper">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} size={13} fill="currentColor" aria-hidden />
+                    ))}
+                  </div>
                 </div>
-                <blockquote className="mt-5 text-sm leading-7 text-cream/70">
+                <blockquote className="text-base leading-8 text-bark/64">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-6 text-sm font-semibold text-cream">
-                  {testimonial.name}
-                </figcaption>
-              </figure>
+              </div>
             </FadeIn>
           ))}
         </div>
@@ -329,20 +352,20 @@ export async function FAQSection() {
   const items = t.raw("items") as Array<{ question: string; answer: string }>;
 
   return (
-    <section className="bg-obsidian px-5 py-24 sm:px-8">
+    <section className="border-y border-bark/8 bg-linen px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
         <SectionHeading title={t("title")} text={t("text")} />
         <div className="grid gap-3">
           {items.map((faq) => (
             <details
               key={faq.question}
-              className="group rounded-[8px] border border-white/10 bg-cream/[0.035] p-5"
+              className="group rounded-[8px] border border-bark/12 bg-white/60 p-5"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-xl text-cream">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-xl text-bark">
                 {faq.question}
                 <span className="text-copper transition group-open:rotate-45">+</span>
               </summary>
-              <p className="mt-4 text-sm leading-7 text-cream/66">{faq.answer}</p>
+              <p className="mt-4 text-sm leading-7 text-bark/60">{faq.answer}</p>
             </details>
           ))}
         </div>
@@ -357,11 +380,11 @@ export async function ContactSection() {
   const tBooking = await getTranslations("booking");
 
   return (
-    <section className="bg-charcoal px-5 py-24 sm:px-8">
+    <section className="bg-linen px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr]">
         <div>
           <SectionHeading title={t("title")} text={t("text")} />
-          <div className="mt-9 grid gap-4 text-cream/72">
+          <div className="mt-9 grid gap-4 text-bark/68">
             <a
               href={`tel:+66${contact.phone.replace(/^0/, "")}`}
               className="flex gap-3 hover:text-copper"
@@ -373,25 +396,25 @@ export async function ContactSection() {
             <WhatsAppButton bookingMsg={tBooking("message")}>{tCommon("whatsAppOfer")}</WhatsAppButton>
             <a
               href={contact.instagram}
-              className="inline-flex h-12 items-center justify-center rounded-[8px] border border-white/15 px-5 text-sm font-semibold text-cream transition hover:border-copper hover:text-copper"
+              className="inline-flex h-12 items-center justify-center rounded-[8px] border border-bark/20 px-5 text-sm font-semibold text-bark transition hover:border-copper hover:text-copper"
             >
               {t("instagram")}
             </a>
           </div>
         </div>
-        <div className="min-h-[420px] overflow-hidden rounded-[8px] border border-white/10 bg-cream/[0.035]">
-          <div className="flex h-full min-h-[420px] flex-col justify-between bg-[radial-gradient(circle_at_35%_25%,rgba(192,124,62,0.22),transparent_32%),linear-gradient(135deg,#17100d,#080706)] p-8">
+        <div className="min-h-[420px] overflow-hidden rounded-[8px]">
+          <div className="flex h-full min-h-[420px] flex-col justify-between bg-terracotta p-8">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-copper">
+              <p className="text-xs uppercase tracking-[0.22em] text-cream/70">
                 {t("locationLabel")}
               </p>
               <h3 className="mt-5 font-serif text-4xl text-cream">{t("locationTitle")}</h3>
-              <p className="mt-4 max-w-md text-sm leading-7 text-cream/64">{t("locationText")}</p>
+              <p className="mt-4 max-w-md text-sm leading-7 text-cream/70">{t("locationText")}</p>
             </div>
-            <div className="grid gap-4 text-sm text-cream/64">
-              <div className="h-px bg-white/10" />
+            <div className="grid gap-4 text-sm text-cream/70">
+              <div className="h-px bg-cream/20" />
               <div className="grid gap-1">
-                <span className="text-cream/80">{t("address1")}</span>
+                <span className="text-cream/90">{t("address1")}</span>
                 <span>{t("address2")}</span>
                 <span>{t("address3")}</span>
               </div>
@@ -399,7 +422,7 @@ export async function ContactSection() {
                 href="https://www.google.com/maps/search/?api=1&query=Chai+Sathan+Saraphi+Chiang+Mai+Thailand"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-fit items-center gap-2 rounded-[6px] border border-copper/40 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-copper transition hover:border-copper hover:bg-copper/10"
+                className="inline-flex w-fit items-center gap-2 rounded-[6px] border border-cream/40 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-cream transition hover:border-cream hover:bg-cream/10"
               >
                 <MapPin size={13} aria-hidden />
                 {tCommon("getDirections")}
@@ -446,21 +469,21 @@ export async function JournalPreview() {
   const items = t.raw("items") as Array<{ title: string; date: string; excerpt: string }>;
 
   return (
-    <section className="bg-obsidian px-5 py-24 sm:px-8">
+    <section className="bg-linen px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <SectionHeading title={t("title")} text={t("text")} />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {items.map((post) => (
             <article
               key={post.title}
-              className="rounded-[8px] border border-white/10 bg-cream/[0.035] p-6"
+              className="rounded-[8px] border border-bark/10 bg-white/60 p-6"
             >
               <div className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-copper">
                 <CalendarDays size={14} aria-hidden />
                 {post.date}
               </div>
-              <h3 className="mt-6 font-serif text-2xl text-cream">{post.title}</h3>
-              <p className="mt-4 text-sm leading-7 text-cream/64">{post.excerpt}</p>
+              <h3 className="mt-6 font-serif text-2xl text-bark">{post.title}</h3>
+              <p className="mt-4 text-sm leading-7 text-bark/60">{post.excerpt}</p>
             </article>
           ))}
         </div>
@@ -476,16 +499,16 @@ export async function PrivateEventsContent() {
   const features = t.raw("features") as string[];
 
   return (
-    <section className="bg-obsidian px-5 py-24 sm:px-8">
+    <section className="bg-linen px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center">
         <div>
           <SectionHeading title={t("sectionTitle")} />
-          <p className="mt-7 text-lg leading-9 text-cream/70">{t("body")}</p>
+          <p className="mt-7 text-lg leading-9 text-bark/68">{t("body")}</p>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {features.map((item) => (
-              <div key={item} className="rounded-[8px] border border-white/10 p-4">
+              <div key={item} className="rounded-[8px] border border-bark/10 bg-white/60 p-4">
                 <Flame className="text-copper" size={20} aria-hidden />
-                <p className="mt-3 text-sm font-semibold text-cream">{item}</p>
+                <p className="mt-3 text-sm font-semibold text-bark">{item}</p>
               </div>
             ))}
           </div>
@@ -493,7 +516,7 @@ export async function PrivateEventsContent() {
             <WhatsAppButton bookingMsg={tBooking("message")}>{t("cta")}</WhatsAppButton>
           </div>
         </div>
-        <div className="relative aspect-[4/5] overflow-hidden rounded-[8px] border border-white/10 lg:aspect-[5/4]">
+        <div className="relative aspect-[4/5] overflow-hidden rounded-[8px] border border-bark/10 lg:aspect-[5/4]">
           <Image
             src="/images/gallery/feast-experience.jpg"
             alt="Private feast experience"
@@ -514,7 +537,7 @@ export async function ConsultingContent() {
   const services = t.raw("services") as string[];
 
   return (
-    <section className="bg-obsidian px-5 py-24 sm:px-8">
+    <section className="bg-linen px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <SectionHeading title={t("sectionTitle")} text={t("sectionText")} />
@@ -526,9 +549,9 @@ export async function ConsultingContent() {
           {services.map((item) => (
             <div
               key={item}
-              className="rounded-[8px] border border-white/10 bg-cream/[0.035] p-6"
+              className="rounded-[8px] border border-bark/10 bg-white/60 p-6"
             >
-              <h3 className="font-serif text-2xl text-cream">{item}</h3>
+              <h3 className="font-serif text-2xl text-bark">{item}</h3>
             </div>
           ))}
         </div>
