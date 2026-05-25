@@ -5,10 +5,10 @@ import {
   ContactSection,
   FAQSection,
   FeaturedExperiences,
+  FieldNotes,
   GalleryStrip,
   Hero,
   IntroBand,
-  JournalPreview,
   Testimonials,
 } from "@/components/sections";
 import {
@@ -37,13 +37,13 @@ export default function Home() {
     <>
       <Hero />
       <IntroBand />
+      <FieldNotes />
       <FeaturedExperiences />
       <AboutPreview />
       <GalleryStrip />
       <Testimonials />
       <FAQSection />
       <ContactSection />
-      <JournalPreview />
       <script
         type="application/ld+json"
         suppressHydrationWarning

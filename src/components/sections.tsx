@@ -463,28 +463,95 @@ export function PageHero({ title, text }: { title: string; text: string }) {
   );
 }
 
-export async function JournalPreview() {
-  const t = await getTranslations("journal");
-  const items = t.raw("items") as Array<{ title: string; date: string; excerpt: string }>;
+export async function FieldNotes() {
+  const { getLatestPost, getAllPosts } = await import("@/content/journal");
+  const latest = getLatestPost();
+  const archive = getAllPosts().slice(1);
 
   return (
-    <section className="bg-linen px-5 py-24 sm:px-8">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading title={t("title")} text={t("text")} />
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {items.map((post) => (
-            <article
-              key={post.title}
-              className="rounded-[8px] border border-bark/10 bg-white/60 p-6"
-            >
-              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-copper">
-                <CalendarDays size={14} aria-hidden />
-                {post.date}
-              </div>
-              <h3 className="mt-6 font-serif text-2xl text-bark">{post.title}</h3>
-              <p className="mt-4 text-sm leading-7 text-bark/60">{post.excerpt}</p>
-            </article>
-          ))}
+    <section className="bg-[#F7F2EA] px-5 pb-24 pt-20 sm:px-8" aria-label="Field Notes">
+      <div className="mx-auto max-w-3xl">
+
+        {/* Section label */}
+        <p className="text-[10px] uppercase tracking-[0.28em] text-[#9C8E7E] mb-14">
+          Field Notes — This Week at the Atelier
+        </p>
+
+        {/* Featured latest post */}
+        <article className="mb-20">
+          <div className="relative w-full aspect-[3/2] overflow-hidden mb-9">
+            <Image
+              src={latest.image}
+              alt={latest.imageAlt}
+              fill
+              sizes="(min-width: 768px) 720px, 100vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+
+          <div className="flex items-baseline justify-between mb-4">
+            <span className="text-[10px] uppercase tracking-[0.24em] text-[#B06F38]">
+              {latest.category}
+            </span>
+            <time className="text-[10px] tracking-wide text-[#9C8E7E]" dateTime={latest.dateISO}>
+              {latest.date}
+            </time>
+          </div>
+
+          <h2 className="font-serif text-[clamp(1.6rem,4vw,2.4rem)] leading-[1.28] text-[#2C2419] mb-7 max-w-xl">
+            {latest.title}
+          </h2>
+
+          <p className="text-[1rem] leading-[2.0] text-[#4A3F32] tracking-[0.005em]">
+            {latest.body}
+          </p>
+        </article>
+
+        {/* Archive grid */}
+        {archive.length > 0 && (
+          <>
+            <hr className="border-t border-[#DDD5C8] mb-14" />
+            <div className="grid gap-12 sm:grid-cols-2">
+              {archive.map((post) => (
+                <article key={post.slug} className="group">
+                  <div className="relative w-full aspect-[3/2] overflow-hidden mb-5">
+                    <Image
+                      src={post.image}
+                      alt={post.imageAlt}
+                      fill
+                      sizes="(min-width: 640px) 340px, 100vw"
+                      className="object-cover transition duration-700 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div className="flex items-baseline justify-between mb-2">
+                    <span className="text-[9px] uppercase tracking-[0.24em] text-[#B06F38]">
+                      {post.category}
+                    </span>
+                    <time className="text-[9px] text-[#9C8E7E]" dateTime={post.dateISO}>
+                      {post.date}
+                    </time>
+                  </div>
+                  <h3 className="font-serif text-[1.2rem] leading-[1.4] text-[#2C2419] mb-3">
+                    {post.title}
+                  </h3>
+                  <p className="text-[0.875rem] leading-[1.9] text-[#5A4F42] line-clamp-4">
+                    {post.body}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Link to full archive */}
+        <div className="mt-16 pt-8 border-t border-[#DDD5C8]">
+          <Link
+            href="/journal"
+            className="inline-flex items-center gap-2 text-[0.8rem] tracking-wide text-[#B06F38] hover:text-[#2C2419] transition"
+          >
+            All field notes <ArrowUpRight size={13} aria-hidden />
+          </Link>
         </div>
       </div>
     </section>
