@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { GalleryStrip, PageHero, SectionHeading } from "@/components/sections";
+import { PageHero, SectionHeading } from "@/components/sections";
 import { gallery, pageMetadata } from "@/lib/brand";
 
 export async function generateMetadata({
@@ -51,7 +51,6 @@ export default async function GalleryPage() {
           </div>
         </div>
       </section>
-      <GalleryStrip />
     </>
   );
 }
