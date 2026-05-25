@@ -39,7 +39,7 @@ export async function SiteFooter() {
           </div>
           <address className="grid gap-3 text-sm not-italic">
             <a className="flex gap-3 hover:text-cream" href={`tel:${contact.phone}`}>
-              <Phone size={16} aria-hidden /> {contact.phone}
+              <Phone size={16} aria-hidden /> {contact.phoneDisplay}
             </a>
             <a className="flex gap-3 hover:text-cream" href={`mailto:${contact.email}`}>
               <Mail size={16} aria-hidden /> {contact.email}

@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 export const siteUrl = "https://ofersatelier.com";
 
 export const contact = {
-  phone: "0800 215 170",
-  email: "Vulcan.tiles@gmail.com",
+  phone: "0800215170",
+  phoneDisplay: "0800 215 170",
+  email: "ofersatelier@gmail.com",
   address:
     "99/99, M.5, Moo Baan Perfect Home, Chai Sathan, Saraphi, Chiang Mai, Thailand",
   instagram: "https://www.instagram.com/ofersatelier",

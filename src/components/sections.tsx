@@ -385,10 +385,10 @@ export async function ContactSection() {
           <SectionHeading title={t("title")} text={t("text")} />
           <div className="mt-9 grid gap-4 text-bark/68">
             <a
-              href={`tel:+66${contact.phone.replace(/^0/, "")}`}
+              href={`tel:${contact.phone}`}
               className="flex gap-3 hover:text-copper"
             >
-              <Phone className="text-copper" size={18} aria-hidden /> {contact.phone}
+              <Phone className="text-copper" size={18} aria-hidden /> {contact.phoneDisplay}
             </a>
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
