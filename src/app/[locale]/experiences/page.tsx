@@ -25,7 +25,7 @@ export default async function ExperiencesPage() {
       <PageHero title={t("heroTitle")} text={t("heroText")} />
       <section className="bg-obsidian px-5 py-24 sm:px-8">
         <div className="mx-auto max-w-7xl">
-          <ExperiencesGrid />
+          <ExperiencesGrid theme="dark" />
         </div>
       </section>
       <ContactSection />

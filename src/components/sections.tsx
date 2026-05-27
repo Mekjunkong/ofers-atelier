@@ -2,13 +2,11 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import {
   ArrowUpRight,
-  CalendarDays,
   Clock,
   Flame,
   MapPin,
   MessageCircle,
   Phone,
-  Star,
 } from "lucide-react";
 import { contact, experiences, gallery, whatsappUrl } from "@/lib/brand";
 import { FadeIn, HeroItem, HeroMotion } from "@/components/motion";
@@ -101,31 +99,22 @@ export async function IntroBand() {
   const tCommon = await getTranslations("common");
 
   return (
-    <section className="bg-terracotta px-5 py-24 text-center sm:px-8">
-      <div className="mx-auto max-w-lg">
+    <section className="bg-terracotta px-5 py-28 text-center sm:px-8 md:py-36">
+      <div className="mx-auto max-w-4xl">
         <FadeIn>
-          <div className="relative mx-auto mb-10 aspect-[3/4] w-36 overflow-hidden rounded-[8px] border-2 border-cream/20">
-            <Image
-              src="/images/chef-ofer-real.jpg"
-              alt="Chef Ofer Aviv"
-              fill
-              sizes="144px"
-              className="object-cover object-[54%_15%]"
-            />
-          </div>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <h2 className="font-serif text-4xl leading-tight text-cream md:text-5xl">
+          <h2 className="font-serif text-5xl leading-[1.0] text-cream md:text-7xl lg:text-8xl">
             {t("heading")}
           </h2>
         </FadeIn>
-        <FadeIn delay={0.18}>
-          <p className="mt-6 text-base leading-8 text-cream/78">{t("body")}</p>
+        <FadeIn delay={0.12}>
+          <p className="mx-auto mt-8 max-w-xl text-base leading-8 text-cream/82 md:text-lg">
+            {t("body")}
+          </p>
         </FadeIn>
-        <FadeIn delay={0.25}>
+        <FadeIn delay={0.22}>
           <Link
             href="/about"
-            className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-cream underline underline-offset-4 hover:text-cream/70"
+            className="mt-9 inline-flex items-center gap-2 text-sm font-semibold text-cream underline underline-offset-4 hover:text-cream/70"
           >
             {tCommon("learnMoreAboutChef")} <ArrowUpRight size={16} aria-hidden />
           </Link>
@@ -149,22 +138,38 @@ export function SectionHeading({
   const headingColor = theme === "dark" ? "text-cream" : "text-bark";
   const bodyColor = theme === "dark" ? "text-cream/80" : "text-bark/70";
   return (
-    <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-      <h2 className={`font-serif text-4xl leading-tight md:text-6xl ${headingColor}`}>{title}</h2>
-      {text ? <p className={`mt-5 text-base leading-8 ${bodyColor}`}>{text}</p> : null}
+    <div className={align === "center" ? "mx-auto max-w-4xl text-center" : "max-w-4xl"}>
+      <h2 className={`font-serif text-5xl leading-[0.92] md:text-7xl ${headingColor}`}>{title}</h2>
+      {text ? <p className={`mt-6 text-base leading-8 ${bodyColor}`}>{text}</p> : null}
     </div>
   );
 }
 
-export async function ExperiencesGrid({ limit }: { limit?: number }) {
+export async function ExperiencesGrid({
+  limit,
+  theme = "light",
+}: {
+  limit?: number;
+  theme?: "light" | "dark";
+}) {
   const t = await getTranslations("experiences");
   const tCommon = await getTranslations("common");
   const tBooking = await getTranslations("booking");
 
+  const textPrimary = theme === "dark" ? "text-cream" : "text-bark";
+  const textSecondary = theme === "dark" ? "text-cream/68" : "text-bark/70";
+  const textMuted = theme === "dark" ? "text-cream/32" : "text-bark/32";
+  const borderColor = theme === "dark" ? "border-cream/10" : "border-bark/10";
+  const priceColor = theme === "dark" ? "text-gold" : "text-copper";
+  const linkClasses =
+    theme === "dark"
+      ? "text-gold hover:text-cream transition"
+      : "text-copper hover:text-bark transition";
+
   const items = typeof limit === "number" ? experiences.slice(0, limit) : experiences;
 
   return (
-    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+    <div>
       {items.map((experience, index) => {
         const title = t(`${experience.slug}.title`);
         const description = t(`${experience.slug}.description`);
@@ -172,44 +177,67 @@ export async function ExperiencesGrid({ limit }: { limit?: number }) {
         const bookingMsg = tBooking("messageWithExperience", { experience: title });
 
         return (
-          <FadeIn key={experience.slug} delay={index * 0.04}>
+          <FadeIn key={experience.slug} delay={index * 0.05}>
             <article
               id={experience.slug}
-              className="group h-full overflow-hidden rounded-[8px] border border-bark/10 bg-white/70 cursor-pointer"
+              className={`group border-t ${borderColor} py-10 md:py-14`}
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={experience.image}
-                  alt={title}
-                  fill
-                  loading="lazy"
-                  sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover transition duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-serif text-2xl leading-tight text-bark">{title}</h3>
-                  <span className="shrink-0 text-sm font-semibold text-copper">
-                    {experience.price}
-                  </span>
+              <div className="grid gap-6 md:grid-cols-[48px_1fr_200px] md:gap-10 lg:grid-cols-[56px_1fr_240px] lg:gap-14">
+
+                {/* Index */}
+                <span className={`pt-2 text-xs font-semibold tracking-[0.22em] tabular-nums ${textMuted}`}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                {/* Text content */}
+                <div>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                    <h3 className={`font-serif text-3xl leading-tight md:text-4xl ${textPrimary}`}>
+                      {title}
+                    </h3>
+                    <span className={`text-base font-semibold ${priceColor}`}>
+                      {experience.price}
+                    </span>
+                  </div>
+                  <p className={`mt-4 max-w-xl text-sm leading-7 ${textSecondary}`}>
+                    {description}
+                  </p>
+                  <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-3">
+                    <span className={`flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] ${textMuted}`}>
+                      <Clock size={12} aria-hidden />
+                      {duration}
+                    </span>
+                    <a
+                      href={`https://wa.me/66800215170?text=${encodeURIComponent(bookingMsg)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1.5 text-sm font-semibold ${linkClasses}`}
+                    >
+                      {tCommon("bookViaWhatsApp")}
+                      <ArrowUpRight size={14} aria-hidden />
+                    </a>
+                  </div>
                 </div>
-                <p className="mt-4 min-h-20 text-sm leading-7 text-bark/60">{description}</p>
-                <div className="mt-5 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-bark/40">
-                  <Clock size={14} aria-hidden />
-                  {duration}
-                </div>
-                <div className="mt-6">
-                  <WhatsAppButton bookingMsg={bookingMsg}>
-                    {tCommon("bookViaWhatsApp")}
-                  </WhatsAppButton>
+
+                {/* Image — sharp, no radius */}
+                <div className="hidden md:block">
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    <Image
+                      src={experience.image}
+                      alt={title}
+                      fill
+                      loading="lazy"
+                      sizes="240px"
+                      className="object-cover transition duration-700 group-hover:scale-[1.04]"
+                    />
+                  </div>
                 </div>
               </div>
             </article>
           </FadeIn>
         );
       })}
+      <div className={`border-t ${borderColor}`} />
     </div>
   );
 }
@@ -244,7 +272,7 @@ export async function AboutPreview() {
     <section className="border-y border-bark/8 bg-linen px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-[8px] border border-bark/10">
+          <div className="relative overflow-hidden">
             <Image
               src="/images/chef-ofer-real.jpg"
               alt="Chef Ofer Aviv"
@@ -319,30 +347,46 @@ export async function GalleryStrip() {
 export async function Testimonials() {
   const t = await getTranslations("testimonials");
   const items = t.raw("items") as Array<{ quote: string; name: string }>;
+  const [featured, ...secondary] = items;
 
   return (
-    <section className="bg-linen px-5 py-24 sm:px-8">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading title={t("title")} />
-        <div className="mt-12 divide-y divide-bark/10">
-          {items.map((testimonial, index) => (
-            <FadeIn key={testimonial.name} delay={index * 0.05}>
-              <div className="grid gap-4 py-10 md:grid-cols-[1fr_2fr] md:gap-12">
-                <div className="flex flex-col gap-1">
-                  <p className="font-semibold text-bark">{testimonial.name}</p>
-                  <div className="flex gap-1 text-copper">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={13} fill="currentColor" aria-hidden />
-                    ))}
-                  </div>
-                </div>
-                <blockquote className="text-base leading-8 text-bark/75">
-                  &ldquo;{testimonial.quote}&rdquo;
+    <section className="bg-obsidian px-5 py-32 sm:px-8">
+      <div className="mx-auto max-w-5xl">
+        {/* Featured hero quote */}
+        <FadeIn>
+          <blockquote>
+            <p className="font-serif text-4xl italic leading-[1.18] text-cream md:text-5xl lg:text-6xl">
+              &ldquo;{featured.quote}&rdquo;
+            </p>
+            <footer className="mt-10 flex items-center gap-5">
+              <span className="h-px w-10 bg-copper" aria-hidden />
+              <cite className="not-italic text-xs font-semibold uppercase tracking-[0.22em] text-copper">
+                {featured.name}
+              </cite>
+            </footer>
+          </blockquote>
+        </FadeIn>
+
+        {/* Secondary quotes */}
+        {secondary.length > 0 && (
+          <div className="mt-20 grid gap-10 border-t border-cream/10 pt-16 sm:grid-cols-2">
+            {secondary.map((testimonial) => (
+              <FadeIn key={testimonial.name}>
+                <blockquote>
+                  <p className="text-base italic leading-8 text-cream/60">
+                    &ldquo;{testimonial.quote}&rdquo;
+                  </p>
+                  <footer className="mt-5 flex items-center gap-3">
+                    <span className="h-px w-6 bg-copper/40" aria-hidden />
+                    <cite className="not-italic text-xs font-semibold uppercase tracking-[0.15em] text-cream/38">
+                      {testimonial.name}
+                    </cite>
+                  </footer>
                 </blockquote>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
+              </FadeIn>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -356,11 +400,11 @@ export async function FAQSection() {
     <section className="border-y border-bark/8 bg-linen px-5 py-24 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
         <SectionHeading title={t("title")} text={t("text")} />
-        <div className="grid gap-3">
+        <div>
           {items.map((faq) => (
             <details
               key={faq.question}
-              className="group rounded-[8px] border border-bark/12 bg-white/60 p-5"
+              className="group border-b border-bark/10 py-6 first:border-t first:border-t-bark/10"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-xl text-bark">
                 {faq.question}
