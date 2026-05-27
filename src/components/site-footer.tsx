@@ -13,7 +13,7 @@ export async function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-[1.4fr_0.8fr_1fr]">
           <div>
             <p className="max-w-md text-sm leading-7 text-cream/70">{t("tagline")}</p>
-            <a href={whatsappUrl} className="mt-5 inline-block text-sm font-semibold text-cream hover:text-cream/70 underline underline-offset-4">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-block text-sm font-semibold text-cream hover:text-cream/70 underline underline-offset-4">
               {t("bookViaWhatsApp")}
             </a>
           </div>
@@ -64,7 +64,7 @@ export async function SiteFooter() {
           </Link>
         </div>
 
-        <div className="mt-8 text-xs text-cream/40">
+        <div className="mt-8 text-xs text-cream/65">
           © {new Date().getFullYear()} {t("copyright")}
         </div>
       </div>

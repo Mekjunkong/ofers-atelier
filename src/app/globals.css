@@ -70,3 +70,26 @@ img {
   font-weight: 700;
   letter-spacing: 0;
 }
+
+/* FAQ disclosure smooth animation */
+details > p {
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 260ms ease-out;
+}
+
+details > p > span {
+  min-height: 0;
+}
+
+details[open] > p {
+  grid-template-rows: 1fr;
+}
+
+/* Reduced motion: disable FAQ animation */
+@media (prefers-reduced-motion: reduce) {
+  details > p {
+    transition: none;
+  }
+}

@@ -29,6 +29,8 @@ export function WhatsAppButton({
   return (
     <a
       href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className={
         variant === "solid"
           ? "inline-flex h-12 items-center justify-center gap-2 rounded-[8px] bg-copper px-5 text-sm font-semibold text-obsidian shadow-[0_16px_40px_rgba(176,111,56,0.22)] transition hover:bg-gold focus:outline-none focus:ring-2 focus:ring-gold/70"
@@ -71,7 +73,7 @@ export async function Hero() {
             </p>
           </HeroItem>
           <HeroItem>
-            <p className="mt-7 max-w-xl text-base leading-8 text-cream/74 md:text-lg">
+            <p className="mt-7 max-w-xl text-base leading-8 text-cream/85 md:text-lg">
               {t("description")}
             </p>
           </HeroItem>
@@ -102,7 +104,7 @@ export async function IntroBand() {
     <section className="bg-terracotta px-5 py-24 text-center sm:px-8">
       <div className="mx-auto max-w-lg">
         <FadeIn>
-          <div className="relative mx-auto mb-10 aspect-[3/4] w-36 overflow-hidden rounded-[4px] border-2 border-cream/20">
+          <div className="relative mx-auto mb-10 aspect-[3/4] w-36 overflow-hidden rounded-[8px] border-2 border-cream/20">
             <Image
               src="/images/chef-ofer-real.jpg"
               alt="Chef Ofer Aviv"
@@ -145,7 +147,7 @@ export function SectionHeading({
   theme?: "dark" | "light";
 }) {
   const headingColor = theme === "dark" ? "text-cream" : "text-bark";
-  const bodyColor = theme === "dark" ? "text-cream/68" : "text-bark/60";
+  const bodyColor = theme === "dark" ? "text-cream/80" : "text-bark/70";
   return (
     <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       <h2 className={`font-serif text-4xl leading-tight md:text-6xl ${headingColor}`}>{title}</h2>
@@ -173,14 +175,14 @@ export async function ExperiencesGrid({ limit }: { limit?: number }) {
           <FadeIn key={experience.slug} delay={index * 0.04}>
             <article
               id={experience.slug}
-              className="group h-full overflow-hidden rounded-[8px] border border-bark/10 bg-white/70"
+              className="group h-full overflow-hidden rounded-[8px] border border-bark/10 bg-white/70 cursor-pointer"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={experience.image}
                   alt={title}
                   fill
-                  loading="eager"
+                  loading="lazy"
                   sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
                   className="object-cover transition duration-700 group-hover:scale-105"
                 />
@@ -256,7 +258,7 @@ export async function AboutPreview() {
         <FadeIn delay={0.1}>
           <SectionHeading title={t("title")} />
           <p className="mt-7 text-lg leading-9 text-bark/72">{t("body1")}</p>
-          <p className="mt-5 text-base leading-8 text-bark/58">{t("body2")}</p>
+          <p className="mt-5 text-base leading-8 text-bark/70">{t("body2")}</p>
           <Link
             href="/about"
             className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-copper hover:text-gold"
@@ -298,7 +300,7 @@ export async function GalleryStrip() {
                   src={item.src}
                   alt={galleryItems[index]?.alt ?? item.src}
                   fill
-                  loading="eager"
+                  loading="lazy"
                   sizes="(min-width: 1024px) 17vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition duration-700 group-hover:scale-105"
                 />
@@ -334,7 +336,7 @@ export async function Testimonials() {
                     ))}
                   </div>
                 </div>
-                <blockquote className="text-base leading-8 text-bark/64">
+                <blockquote className="text-base leading-8 text-bark/75">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
               </div>
@@ -362,9 +364,16 @@ export async function FAQSection() {
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-xl text-bark">
                 {faq.question}
-                <span className="text-copper transition group-open:rotate-45">+</span>
+                <span
+                  className="shrink-0 text-lg text-copper transition-transform duration-[260ms] group-open:rotate-45"
+                  aria-hidden
+                >
+                  +
+                </span>
               </summary>
-              <p className="mt-4 text-sm leading-7 text-bark/60">{faq.answer}</p>
+              <p className="mt-4 text-sm leading-7 text-bark/72">
+                <span>{faq.answer}</span>
+              </p>
             </details>
           ))}
         </div>
@@ -404,13 +413,13 @@ export async function ContactSection() {
         <div className="min-h-[420px] overflow-hidden rounded-[8px]">
           <div className="flex h-full min-h-[420px] flex-col justify-between bg-terracotta p-8">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-cream/70">
+              <p className="text-xs uppercase tracking-[0.22em] text-cream/80">
                 {t("locationLabel")}
               </p>
               <h3 className="mt-5 font-serif text-4xl text-cream">{t("locationTitle")}</h3>
-              <p className="mt-4 max-w-md text-sm leading-7 text-cream/70">{t("locationText")}</p>
+              <p className="mt-4 max-w-md text-sm leading-7 text-cream/85">{t("locationText")}</p>
             </div>
-            <div className="grid gap-4 text-sm text-cream/70">
+            <div className="grid gap-4 text-sm text-cream/80">
               <div className="h-px bg-cream/20" />
               <div className="grid gap-1">
                 <span className="text-cream/90">{t("address1")}</span>
@@ -469,11 +478,11 @@ export async function FieldNotes() {
   const archive = getAllPosts().slice(1);
 
   return (
-    <section className="bg-[#F7F2EA] px-5 pb-24 pt-20 sm:px-8" aria-label="Field Notes">
+    <section className="bg-linen px-5 pb-24 pt-20 sm:px-8" aria-label="Field Notes">
       <div className="mx-auto max-w-3xl">
 
         {/* Section label */}
-        <p className="text-[10px] uppercase tracking-[0.28em] text-[#9C8E7E] mb-14">
+        <p className="text-xs uppercase tracking-[0.28em] text-muted mb-14">
           Field Notes — This Week at the Atelier
         </p>
 
@@ -491,19 +500,19 @@ export async function FieldNotes() {
           </div>
 
           <div className="flex items-baseline justify-between mb-4">
-            <span className="text-[10px] uppercase tracking-[0.24em] text-[#B06F38]">
+            <span className="text-xs uppercase tracking-[0.24em] text-copper">
               {latest.category}
             </span>
-            <time className="text-[10px] tracking-wide text-[#9C8E7E]" dateTime={latest.dateISO}>
+            <time className="text-xs tracking-wide text-muted" dateTime={latest.dateISO}>
               {latest.date}
             </time>
           </div>
 
-          <h2 className="font-serif text-[clamp(1.6rem,4vw,2.4rem)] leading-[1.28] text-[#2C2419] mb-7 max-w-xl">
+          <h2 className="font-serif text-[clamp(1.6rem,4vw,2.4rem)] leading-[1.28] text-bark mb-7 max-w-xl">
             {latest.title}
           </h2>
 
-          <p className="text-[1rem] leading-[2.0] text-[#4A3F32] tracking-[0.005em]">
+          <p className="text-base leading-[2.0] text-bark/75 tracking-[0.005em]">
             {latest.body}
           </p>
         </article>
@@ -511,7 +520,7 @@ export async function FieldNotes() {
         {/* Archive grid */}
         {archive.length > 0 && (
           <>
-            <hr className="border-t border-[#DDD5C8] mb-14" />
+            <hr className="border-t border-bark/12 mb-14" />
             <div className="grid gap-12 sm:grid-cols-2">
               {archive.map((post) => (
                 <article key={post.slug} className="group">
@@ -520,22 +529,23 @@ export async function FieldNotes() {
                       src={post.image}
                       alt={post.imageAlt}
                       fill
+                      loading="lazy"
                       sizes="(min-width: 640px) 340px, 100vw"
                       className="object-cover transition duration-700 group-hover:scale-[1.03]"
                     />
                   </div>
                   <div className="flex items-baseline justify-between mb-2">
-                    <span className="text-[9px] uppercase tracking-[0.24em] text-[#B06F38]">
+                    <span className="text-xs uppercase tracking-[0.24em] text-copper">
                       {post.category}
                     </span>
-                    <time className="text-[9px] text-[#9C8E7E]" dateTime={post.dateISO}>
+                    <time className="text-xs text-muted" dateTime={post.dateISO}>
                       {post.date}
                     </time>
                   </div>
-                  <h3 className="font-serif text-[1.2rem] leading-[1.4] text-[#2C2419] mb-3">
+                  <h3 className="font-serif text-xl leading-[1.4] text-bark mb-3">
                     {post.title}
                   </h3>
-                  <p className="text-[0.875rem] leading-[1.9] text-[#5A4F42] line-clamp-4">
+                  <p className="text-sm leading-[1.9] text-bark/68 line-clamp-4">
                     {post.body}
                   </p>
                 </article>
@@ -545,12 +555,12 @@ export async function FieldNotes() {
         )}
 
         {/* Link to full archive */}
-        <div className="mt-16 pt-8 border-t border-[#DDD5C8]">
+        <div className="mt-16 pt-8 border-t border-bark/12">
           <Link
             href="/journal"
-            className="inline-flex items-center gap-2 text-[0.8rem] tracking-wide text-[#B06F38] hover:text-[#2C2419] transition"
+            className="inline-flex items-center gap-2 text-sm font-medium tracking-wide text-copper hover:text-bark transition"
           >
-            All field notes <ArrowUpRight size={13} aria-hidden />
+            All field notes <ArrowUpRight size={14} aria-hidden />
           </Link>
         </div>
       </div>

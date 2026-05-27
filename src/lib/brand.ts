@@ -81,9 +81,9 @@ export const experiences = [
 
 export const gallery = [
   {
-    src: "/images/chef-ofer-real.jpg",
-    alt: "Chef Ofer Aviv presenting smoked meat in Chiang Mai",
-    label: "Chef Ofer",
+    src: "/images/gallery/fire-cooking.jpg",
+    alt: "Outdoor fire cooking class in Chiang Mai",
+    label: "Fire Cooking",
   },
   {
     src: "/images/gallery/smoked-pork-ribs.jpg",
@@ -91,9 +91,9 @@ export const gallery = [
     label: "Smoked Meat",
   },
   {
-    src: "/images/gallery/fire-cooking.jpg",
-    alt: "Outdoor fire cooking class in Chiang Mai",
-    label: "Fire Cooking",
+    src: "/images/gallery/feast-experience.jpg",
+    alt: "Feast experience at Ofer's Atelier",
+    label: "Feasts",
   },
   {
     src: "/images/gallery/chef-consulting.jpg",
@@ -101,9 +101,9 @@ export const gallery = [
     label: "Chef Table",
   },
   {
-    src: "/images/gallery/feast-experience.jpg",
-    alt: "Feast experience at Ofer's Atelier",
-    label: "Feasts",
+    src: "/images/gallery/preserving-workshop.jpg",
+    alt: "Preserving techniques workshop at Ofer's Atelier",
+    label: "Workshop",
   },
 ];
 

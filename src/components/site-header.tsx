@@ -84,6 +84,8 @@ export function SiteHeader() {
             <LanguageSwitcher className="hidden h-9 items-center rounded-[6px] border border-white/15 px-3 text-xs font-medium text-cream/70 transition hover:border-copper/40 hover:text-copper focus:outline-none focus:ring-2 focus:ring-gold/70 lg:flex" />
             <a
               href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex h-11 items-center justify-center gap-2 rounded-[8px] border border-copper/50 bg-copper px-4 text-sm font-semibold text-obsidian shadow-[0_12px_34px_rgba(176,111,56,0.22)] transition hover:bg-gold focus:outline-none focus:ring-2 focus:ring-gold/70"
             >
               <MessageCircle size={17} aria-hidden />
@@ -148,6 +150,8 @@ export function SiteHeader() {
               <div className="mt-auto grid gap-3 border-t border-white/10 pt-6">
                 <a
                   href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-12 items-center justify-center gap-2 rounded-[8px] bg-copper text-sm font-semibold text-obsidian shadow-[0_12px_34px_rgba(176,111,56,0.22)] transition hover:bg-gold"
                 >
                   <MessageCircle size={17} aria-hidden />

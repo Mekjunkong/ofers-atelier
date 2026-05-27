@@ -46,11 +46,26 @@
     "title": "Gallery",
     "text": "A visual taste of Chef Ofer, smoked meat, workshops, fire cooking, guests dining, and food closeups.",
     "items": [
-      { "alt": "Chef Ofer Aviv presenting smoked meat in Chiang Mai", "label": "Chef Ofer" },
-      { "alt": "Smoked pork ribs from Ofer's Atelier", "label": "Smoked Meat" },
-      { "alt": "Outdoor fire cooking class in Chiang Mai", "label": "Fire Cooking" },
-      { "alt": "Guests dining with Chef Ofer", "label": "Chef Table" },
-      { "alt": "Feast experience at Ofer's Atelier", "label": "Feasts" }
+      {
+        "alt": "Outdoor fire cooking class in Chiang Mai",
+        "label": "Fire Cooking"
+      },
+      {
+        "alt": "Smoked pork ribs from Ofer's Atelier",
+        "label": "Smoked Meat"
+      },
+      {
+        "alt": "Feast experience at Ofer's Atelier",
+        "label": "Feasts"
+      },
+      {
+        "alt": "Guests dining with Chef Ofer at the chef table",
+        "label": "Chef Table"
+      },
+      {
+        "alt": "Preserving techniques workshop at Ofer's Atelier",
+        "label": "Workshop"
+      }
     ]
   },
   "testimonials": {
@@ -213,7 +228,11 @@
       "heroText": "Bespoke chef-led gatherings for guests who want a private table, live fire, smoked meat, and a meal built around connection.",
       "sectionTitle": "Private gatherings around the table",
       "body": "Ofer designs intimate chef-table dinners, outdoor fire feasts, and workshop-led celebrations for private groups. The format can be shaped around smoked meat, global fusion courses, hands-on cooking, or a relaxed shared feast.",
-      "features": ["Chef-hosted", "Small groups", "Custom menus"],
+      "features": [
+        "Chef-hosted",
+        "Small groups",
+        "Custom menus"
+      ],
       "cta": "Plan a Private Event",
       "metaTitle": "Private Events",
       "metaDescription": "Book private chef-table dinners, fire cooking feasts, and intimate culinary gatherings with Chef Ofer Aviv in Chiang Mai."
